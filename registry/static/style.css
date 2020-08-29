@@ -151,7 +151,7 @@ th, td {
 
 
 .datepicker-container {
-  background-color: #fff;
+  background-color: #9d9393;
   direction: ltr;
   font-size: 12px;
   left: 0;
@@ -215,7 +215,7 @@ th, td {
 
 .datepicker-top-left::after,
 .datepicker-top-right::after {
-  border-bottom-color: #fff;
+  border-bottom-color: ##9d9393;
   top: -4px;
 }
 
@@ -240,7 +240,7 @@ th, td {
 
 .datepicker-bottom-left::after,
 .datepicker-bottom-right::after {
-  border-top-color: #fff;
+  border-top-color: #9d9393;
   bottom: -4px;
 }
 
@@ -304,7 +304,7 @@ th, td {
 
 .datepicker-panel > ul > li.disabled,
 .datepicker-panel > ul > li.disabled:hover {
-  background-color: #fff;
+  background-color: #9d9393;
   color: #ccc;
   cursor: default;
 }
