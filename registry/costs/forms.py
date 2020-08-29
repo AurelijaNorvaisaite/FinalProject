@@ -17,7 +17,7 @@ class CostInputForm(forms.ModelForm):
     expense_type = forms.ChoiceField()
     expense_supplier = forms.CharField()
     expense_invoice_numb = forms.CharField()
-    expense_invoice_total = forms.FloatField(widget=forms.NumberInput(attrs={'id': 'form_expense_invoice_total', 'step': "0.01"}))
+    expense_invoice_total = forms.DecimalField(widget=forms.NumberInput(attrs={'id': 'form_expense_invoice_total', 'step': "0.01"}))
 
     def clean(self):
         # Data from the form is fetched using super function.
