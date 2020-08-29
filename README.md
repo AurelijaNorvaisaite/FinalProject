@@ -16,7 +16,7 @@ The monthly costs are shown by clicking on "Company cost control"
 
 ## Install Docker
 
-Before running the server, install docker.
+Before running the server, install docker (if choosing to use docker instead of SQLite).
 
 Latest version(not necessary):
 * [installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
