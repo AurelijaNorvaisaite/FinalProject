@@ -1,0 +1,74 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>Company cost control</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Fengyuan Chen's Datepicker -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+
+    <script>
+      $(function () {
+        $("#id_expense_date").datepicker({
+          format:'yyyy-mm-dd',
+        });
+      });
+    </script>
+
+</head>
+
+<header id="header" class="page-topbar">
+ <div class="navbar-fixed">
+    <nav class="navbar">
+      <div class="nav-wrapper">
+        <a class="navbar-brand" href="{% url 'main_view' %}">Company cost control</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+              {% if user.is_authenticated %}
+              <li>
+                 <a href="{% url 'registry_filter_list' %}">
+                    <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Išlaidos
+                 </a>
+               </li>
+               <li>
+                 <a href="{% url 'registry_type_list' %}">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Išlaidų tipai
+                 </a>
+                </li>
+                <li>
+                 <a href="{% url 'logout' %}">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Atsijungti
+                 </a>
+                </li>
+               {% elif user.is_anonymous %}
+                <li>
+                 <a href="{% url 'login' %}">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Prisijungti
+                 </a>
+                </li>
+                {% endif %}
+          </ul>
+      </div>
+    </nav>
+
+    {% if user.is_anonymous %}
+    <div class="cposts">
+        <div class="greetings-banner">
+            <h3><a href="/login">PRISIJUNGTI</a> / <a href="/register">SUSIKURTI</a> PASKYRĄ</h3>
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
+
+
+</html>

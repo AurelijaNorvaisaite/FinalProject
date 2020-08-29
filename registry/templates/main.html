@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-sm-9">
+    <h2>Įmonės našumas</h2>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th>Išlaidos</th>
+        </thead>
+            <tr>
+                <td>Suminės mėnesio išlaidos: </td>
+                <td><a href="{% url 'registry_filter_list' %}">{{ expense_invoice_total }}</a></td>
+            </tr>
+    </table>
+</div>
+
+
+<div id="container" style="width: 75%;">
+<canvas id="main_view" data-url="{% url 'main_view' %}"></canvas>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+$(function () {
+
+  var $monthlyChart = $("#main_view");
+  $.ajax({
+    url: $monthlyChart.data("url"),
+    success: function (data) {
+
+      var ctx = $monthlyChart[0].getContext("2d");
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'Mėnesio išlaidų tipas',
+            backgroundColor: 'white',
+            data: {{ data|safe }}
+          }]
+        },
+        options: {
+          responsive: true,
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Mėnesio išlaidų grafikas'
+          }
+        }
+      });
+
+    }
+  });
+
+});
+
+</script>
+
+{% endblock %}

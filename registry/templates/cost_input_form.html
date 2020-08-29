@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<form action="{% url 'cost_input_view' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <label>Data: </label>
+        {{ form.expense_date }}
+    </div>
+    <div>
+        <label>Tipas: </label>
+        {{ form.expense_type }}
+        <input type="button" onclick='location.href="../cost-type-form"' value="Įtraukti naują tipą">
+    </div>
+     <div>
+         <label>Tiekėjas: </label>
+        {{ form.expense_supplier }}
+    </div>
+    <div>
+        <label>Dokumento Nr: </label>
+        {{ form.expense_invoice_numb }}
+    </div>
+    <div>
+        <label>Suma: </label>
+        {{ form.expense_invoice_total }}
+    </div>
+    <input type="submit" value="Saugoti">
+    <input type="button" onclick='location.href="../list-filter"' value="Uždaryti">
+
+</form>
+
+{% endblock %}
+
+

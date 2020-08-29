@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'cost_type_view' %}" method="post">
+
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Saugoti">
+        <input type="button" onclick='location.href="../list"' value="Uždaryti">
+    </form>
+{% endblock %}

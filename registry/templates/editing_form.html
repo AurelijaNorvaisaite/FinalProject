@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        <h3><a href="{% url 'delete_type_view' registry.pk %}">Ištrinti</a></h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Saugoti">
+        <input type="button" onclick='location.href="../list"' value="Uždaryti">
+    </form>
+{% endblock %}

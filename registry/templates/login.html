@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+	<div>
+	    {% load crispy_forms_tags %}
+	    <form method="POST">
+	        {% csrf_token %}
+	        <div>
+	        	<h2><br>PRISIJUNGTI<br></h2>
+	        </div>
+	        <br>
+			<fieldset style="width: 250">
+			{{ form|crispy }}
+			</fieldset>
+	        <div>
+	            <button type="submit" class="submit">PRISIJUNGTI</button>
+	        </div>
+	    </form>
+	</div>
+</div>
+{% endblock %}

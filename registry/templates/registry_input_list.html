@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get">
+    <div class="well">
+        <h2 style="margin-top: 0">Filtravimas</h2></br>
+        <div class="row">
+            <div class="form-group col-sm-4 col-md-3">
+                <label>Datos filtras: </label>
+                {{ filter.form.expense_date }}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                <label>Datos filtras rėžiais: </label>
+                {{ filter.form.expense_date_range }}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                <label>Tipo filtras: </label>
+                {{ filter.form.expense_type }}
+            </div>
+        </div>
+        <input type="submit" value="Ieškoti">
+    </div>
+</form>
+
+
+</br><h2><a href="{% url 'cost_input_view' %}">Pridėti</a></h2><br/>
+
+<div class="flex-row row">
+    <div class="col-md-6 flexcol-editor">
+    <table class="table">
+        <thead>
+            <th>Data</th>
+            <th>Tipas</th>
+            <th>Tiekėjas</th>
+            <th>Dokumento numeris</th>
+            <th>Suma</th>
+            <th></th>
+        </thead>
+        {% for registry_filter in filter.qs %}
+            <tr>
+                <td>{{ registry_filter.expense_date|date:"Y-m-d" }}</td>
+                <td>{{ registry_filter.expense_type }}</td>
+                <td>{{ registry_filter.expense_supplier }}</td>
+                <td>{{ registry_filter.expense_invoice_numb }}</td>
+                <td>{{ registry_filter.expense_invoice_total }}</td>
+                <td><a href="{% url 'delete_view' registry_filter.pk %}">delete</a></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Viso: </td>
+            <td>{{ filter.sum }}</td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+    <div class="col-md-6 flexcol-errors">
+    <div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+      <script>
+
+        var config = {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: {{ filter.get_data|safe }},
+              backgroundColor: [
+                '#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'
+              ],
+              label: 'Tipas'
+            }],
+            labels: {{ filter.get_labels|safe }}
+          },
+          options: {
+            responsive: true
+          }
+        };
+
+        window.onload = function() {
+          var ctx = document.getElementById('pie-chart').getContext('2d');
+          window.myPie = new Chart(ctx, config);
+        };
+
+      </script>
+    </div>
+</div>
+{% endblock %}
+
+

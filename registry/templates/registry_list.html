@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3><a href="{% url 'cost_type_view' %}">Pridėti tipą</a></h3></br>
+    <table class="table">
+        <thread>
+            <th>Pavadinimas</th>
+            <th>Aktyvus</th>
+        </thread>
+        {% for registry in registries %}
+            <tr>
+                <td><a href="{% url 'update_view' registry.pk %}">{{ registry.expense_type }}</a></td>
+                <td>{{ registry.active }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
