@@ -339,7 +339,7 @@ th, td {
 
 .datepicker-panel > ul[data-view="week"] > li,
 .datepicker-panel > ul[data-view="week"] > li:hover {
-  background-color: #fff;
+  background-color: #9d9393;
   cursor: default;
 }
 
